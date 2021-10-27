@@ -1,7 +1,7 @@
 {
-  "name": "node-express-mariadb-api",
+  "name": "aqsoftware-api",
   "version": "1.0.0",
-  "description": "Generic Node.JS Express.JS MariaDB API Architecture",
+  "description": "Node.JS Express.JS API Architecture",
   "main": "./src/main.js",
   "engines": {
     "node": "10.5.0"
@@ -11,15 +11,18 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Moises Marques da Silva (https://github.com/moisesmarques)",
-  "license": "ISC",
+  "author": "Moises Marques da Silva",
+  "license": "",
   "dependencies": {
+    "@sentry/node": "^6.11.0",
+    "@sentry/tracing": "^6.11.0",
     "body-parser": "1.19.0",
     "config": "3.2.3",
     "consign": "0.1.6",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.5.4",
     "uuid": "3.3.3"
   },

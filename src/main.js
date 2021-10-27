@@ -1,24 +1,34 @@
-const express           = require('express');
-const cors              = require('cors');
-const dotenv            = require('dotenv');
-const GenericController = require('./Controllers/GenericController');
+(async function(){
 
-dotenv.config();
+    require('dotenv').config();
+    const express = require('express');
+    const cors = require('cors');
+    const databaseUpdater = require('./databaseUpdater');
+    const ReferralController = require('./controllers/ReferralController');
 
-const app   = express();
-const port  = process.env.PORT;
+    try{        
+        await databaseUpdater.run('write');
+        await databaseUpdater.run('read');
+    }catch(err){
+        return;
+    }   
 
-app.set('port', port);
+    const app = express();
+    const port = process.env.PORT;
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}));
+    app.set('port', port);
 
-GenericController(app);
+    app.use(cors());
+    app.use(express.json());
+    app.use(express.urlencoded({
+        extended: true
+    }));
 
-app.listen(port, () => {
-  console.log(`Running at port ${port}`)
-});
-  
+
+    ReferralController.build(app);
+
+    app.listen(port, () => {
+        console.log(`Running at port ${port}`)
+    });
+
+})();
